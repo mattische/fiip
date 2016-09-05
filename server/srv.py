@@ -2,9 +2,7 @@ from flask import Flask
 import sqlite3 as sql
 
 
-
 con = sql.connect('db.db')
-
 
 app = Flask(__name__)
 
@@ -12,18 +10,19 @@ app = Flask(__name__)
 def hello_world():
     return 'Hello, World!'
 
+
 @app.route('/setip/<ip>')
 def set_ip(ip):
     cur = con.cursor()
 
-    cur.execute("INSERT INTO Ips (ip, date) VALUES('" + ip + "','now')")
+    cur.execute("INSERT INTO Ips (ip, date) VALUES('" + ip + "',datetime('now'))")
     return "ok"
 
 
 @app.route('/showip/')
 def show_ip():
     cur = con.cursor()
-    cur.execute("SELECT * FROM Ips DESC LIMIT 1")
+    cur.execute("SELECT * FROM Ips DESC LIMIT 100")
     rows = cur.fetchall()
 
 

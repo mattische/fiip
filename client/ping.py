@@ -21,6 +21,7 @@ def ping(host):
 def get_ip_address(ifname):
     """
     returns the IP for the provided (parameter) network interface.
+    the SIOCFIG address only tested on  RPi infrastructure.
     """
     
     import socket

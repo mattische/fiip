@@ -44,9 +44,13 @@ def check():
     """
 
     import os
+    import requests
     
     if ping("www.google.se"):
         print "ping.py: pinging google suceeded."
+        ip_addr = get_ip_address("wlan0") #get our ip
+        r = requests.get("http://46.101.252.64:5000/setip/"+ip_addr)
+        print "ping.py: response from server: " + r.content
         return True
         #make GET rew
     else:

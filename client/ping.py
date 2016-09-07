@@ -47,6 +47,7 @@ def check():
     
     if ping("www.google.se"):
         print "ping.py: pinging google suceeded."
+        return True
         #make GET rew
     else:
         print "ping.py: ping failed. will try to bring wlan0 down and up."

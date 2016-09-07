@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'Set ip:<br>GET request: THIS-IP/setip/<your-ip> <br>Show ip:<br>GET request: THIS-IP/showip'
+    return 'serv.py: Set ip:<br>GET request: THIS-IP/setip/<your-ip> <br>Show ip:<br>GET request: THIS-IP/showip'
 
 
 @app.route('/setip/<ip>')
@@ -19,7 +19,7 @@ def set_ip(ip):
         cur.execute("INSERT INTO Ips (ip, date) VALUES('" + ip + "',datetime('now'))")
         return "srv.py: ip (" + ip + ") saved"
     else:
-        return "not valid ip"
+        return "srv.py: not valid ip. ip not saved."
 
 
 @app.route('/showip/')
@@ -33,7 +33,7 @@ def show_ip():
 
 
     cur.close()
-    return '<strong>100 most recent:<br><br>ID  |  IP  | DATETIME</strong> <br> %s' % ip_str
+    return 'srv.py<br><br><strong>100 most recent:<br><br>ID  |      IP      |    DATETIME</strong> <br> %s' % ip_str
 
 
 def db_setup():

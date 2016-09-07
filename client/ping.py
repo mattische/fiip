@@ -37,45 +37,36 @@ def get_ip_address(ifname):
 
 
 
-def check():
+def check(ping_url, network_interface, server_url):
     """
-    Tries to ping google - if that succeds, makes a GET request to server to store this machines IP address.
-    If ping fails, then bring down, bring up wlan0 and finally run dhclient for wlan0.
-    """
+    Tries to ping the ping_url, i.e www.google.com, - if that succeds, makes a GET request to server(server_url) to store this machines IP address.
+    If ping fails, then bring down, bring up network_interface, i.e wlan0, and finally run dhclient for network_interfae.
+    """c
 
     import os
     import httplib2
     
-    if ping("www.google.se"):
-        print "ping.py: pinging google suceeded."
-        ip_addr = get_ip_address("wlan0") #get our ip
-        req, content = httplib2.Http().request("http://46.101.252.64:5000/setip/"+ip_addr)
+    if ping(ping_url):
+        print "ping.py: pinging " + ping_url + " suceeded."
+        ip_addr = get_ip_address(network_interface) #get our ip
+        
+        print "ping.py: ip address is: " + ip_addr
+        req, content = httplib2.Http().request(server_url+ip_addr)
+        
         print "ping.py: response from server: " + content
         return True
         #make GET rew
     else:
         print "ping.py: ping failed. will try to bring wlan0 down and up."
         try:
-            os.system("ifdown wlan0")
-            os.system("ifup wlan0")
-            os.system("dhclient wlan0")
-            return True
-        except Exception:
-            print "ping.py: shell commands failed"
-            return False
 
 
 
-"""
-if get_ip_address("wlan0"):
-    print get_ip_address("wlan0")
-else:
-    print "nope"
-
-"""
-
-
-if check():
-    print get_ip_address("wlan0")
+#start process
+ping_google = "www.google.se"
+net_interface = "wlan0"
+server_address= "http://46.101.252.64:5000/setip/"
+if check(ping_google, net_interface, server_address):
+    print "ping.py: ping " + ping_google + " ok. IP is " + get_ip_address(net_interface) + ". " + server_address + " requested."
 else:
     print "nope"

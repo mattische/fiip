@@ -38,16 +38,39 @@ def get_ip_address(ifname):
 
 
 def check():
-  if ping("www.google.se"):
-      print "hooray"
-  else:
-      print "nope"
+    """
+    Tries to ping google - if that succeds, makes a GET request to server to store this machines IP address.
+    If ping fails, then bring down, bring up wlan0 and finally run dhclient for wlan0.
+    """
+
+    import os
+    
+    if ping("www.google.se"):
+        print "ping.py: pinging google suceeded."
+        #make GET rew
+    else:
+        print "ping.py: ping failed. will try to bring wlan0 down and up."
+        try:
+            os.system("ifdown wlan0")
+            os.system("ifup wlan0")
+            os.system("dhclient wlan0")
+            return True
+        except Exception:
+            print "ping.py: shell commands failed"
+            return False
 
 
 
-
-
+"""
 if get_ip_address("wlan0"):
+    print get_ip_address("wlan0")
+else:
+    print "nope"
+
+"""
+
+
+if check():
     print get_ip_address("wlan0")
 else:
     print "nope"

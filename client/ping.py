@@ -50,7 +50,7 @@ def check(ping_url, network_interface, server_url):
         print "ping.py: pinging " + ping_url + " suceeded."
         ip_addr = get_ip_address(network_interface) #get our ip
         
-        print "ping.py: ip address is: " + ip_addr
+        print "ping.py: ip address is: " + ip_addr + "(on " + network_interface + ")"
         req, content = httplib2.Http().request(server_url+ip_addr)
         
         print "ping.py: response from server: " + content

@@ -59,10 +59,18 @@ def check(ping_url, network_interface, server_url):
     else:
         print "ping.py: ping failed. will try to bring wlan0 down and up."
         try:
+            os.system("ifdown " + network_interface)
+            os.system("ifup " + network_interface)
+            os.system("dhclient " + network_interface)
+            print "ping.py: ifup, ifdown and dhclient run succesfully on " + network_interface
+            return True
+        except Exception:
+            print "ping.py: ifup, ifdown, dhclient failed on " + network_interface
+            return False
 
 
 
-#start process
+#start process def start
 ping_google = "www.google.se"
 net_interface = "wlan0"
 server_address= "http://46.101.252.64:5000/setip/"

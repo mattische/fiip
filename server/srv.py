@@ -17,7 +17,7 @@ def set_ip(ip):
 
     if len(ip) > 9:
         cur.execute("INSERT INTO Ips (ip, date) VALUES('" + ip + "',datetime('now'))")
-        return "ok"
+        return "srv.py: ip (" + ip + ") saved"
     else:
         return "not valid ip"
 
@@ -42,3 +42,4 @@ def db_setup():
 
 
 db_setup()
+

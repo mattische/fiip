@@ -38,12 +38,12 @@ This config file is created at: <code>/etc/supervisor/conf.d/fiip-server.conf</c
 Do not forget to create folder for logfiles, as above; <code>mkdir -p /var/log/fiip-server</code>
 
 Start supervisor;
-<code>sudo service supervisor start</code>
+<code>$ sudo service supervisor start</code>
 
 And make supervisor read you config file;
 ```
-supervisorctl reread
-supervisor update
+$ supervisorctl reread
+$ supervisor update
 ```
 
 Look for any changes in the log-files.

@@ -18,6 +18,8 @@ Requirements:
 Place the script in server on a host that has an static ip and is reachable from client.
 I use supervisord to run it at startup.
 
+
+### supervisor
 Here is an example of a config file for supervisor;
 
 ```   
@@ -47,5 +49,20 @@ $ supervisor update
 ```
 
 Look for any changes in the log-files.
+
+And on the client side;
+
+```
+[program:fiip-client]
+command=python ping.py
+directory=/home/pi/folder/fiip/client
+autostart=true
+autorestart=true
+starttries=3
+stderr_logfile=/var/log/fiip-client/client.err.log
+stdout_logfile=/var/log/fiip-client/client.out.log
+user=pi
+```
+
 
 [Another example: https://serversforhackers.com/monitoring-processes-with-supervisord]

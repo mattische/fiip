@@ -21,6 +21,7 @@ I use supervisord to run it at startup.
 Here is an example of a config file for supervisor;
 
 ´´´   
+
 [program:fiip-server]   
 command=python -m flask run --host=0.0.0.0   
 directory=/home/userName/folder/subFolder/fiip/server   
@@ -31,6 +32,7 @@ stderr_logfile=/var/log/fiip-server/server.err.log
 stdout_logfile=/var/log/fiip-server/server.out.log   
 user=userName   
 environment=FLASK_APP='srv.py'   
+
 ´´´   
 
 

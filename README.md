@@ -47,3 +47,5 @@ $ supervisor update
 ```
 
 Look for any changes in the log-files.
+
+[Another example: https://serversforhackers.com/monitoring-processes-with-supervisord]

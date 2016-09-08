@@ -20,17 +20,17 @@ I use supervisord to run it at startup.
 
 Here is an example of a config file for supervisor;
 <code>
-[program:fiip-server]
-command=python -m flask run --host=0.0.0.0
-directory=/home/userName/folder/subFolder/fiip/server
-autostart=true
-autorestart=true
-startretries=3
-stderr_logfile=/var/log/fiip-server/server.err.log
-stdout_logfile=/var/log/fiip-server/server.out.log
-user=userName
-environment=FLASK_APP='srv.py'
-</code>
+[program:fiip-server]   
+command=python -m flask run --host=0.0.0.0   
+directory=/home/userName/folder/subFolder/fiip/server   
+autostart=true   
+autorestart=true   
+startretries=3   
+stderr_logfile=/var/log/fiip-server/server.err.log   
+stdout_logfile=/var/log/fiip-server/server.out.log   
+user=userName   
+environment=FLASK_APP='srv.py'   
+</code>   
 
 This config file is created at: <code>/etc/supervisor/conf.d/fiip-server.conf</code>.
 Do not forget to create folder for logfiles, as above; <code>mkdir -p /var/log/fiip-server</code>

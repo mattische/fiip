@@ -25,7 +25,7 @@ def set_ip(ip):
 @app.route('/showip/')
 def show_ip():
     cur = con.cursor()
-    cur.execute("SELECT * FROM Ips DESC LIMIT 100")
+    cur.execute("SELECT * FROM Ips DESC ORDER BY id DESC LIMIT 100")
     rows = cur.fetchall()
     ip_str = ""
     for row in rows:

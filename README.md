@@ -19,6 +19,7 @@ Place the script in server on a host that has an static ip and is reachable from
 I use supervisord to run it at startup.
 
 Here is an example of a config file for supervisor;
+
 ´´´
 [program:fiip-server]   
 command=python -m flask run --host=0.0.0.0   

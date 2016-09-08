@@ -71,10 +71,21 @@ def check(ping_url, network_interface, server_url):
 
 
 #start process def start
-ping_google = "www.google.se"
-net_interface = "wlan0"
-server_address= "http://46.101.252.64:5000/setip/"
-if check(ping_google, net_interface, server_address):
-    print "ping.py: ping " + ping_google + " ok. IP is " + get_ip_address(net_interface) + ". " + server_address + " requested."
-else:
-    print "nope"
+def start():
+    import time
+
+    while True:
+        ping_google = "www.google.se"
+        net_interface = "wlan0"
+        server_address= "http://46.101.252.64:5000/setip/"
+        if check(ping_google, net_interface, server_address):
+            print "ping.py: ping " + ping_google + " ok. IP is " + get_ip_address(net_interface) + ". " + server_address + " requested."
+        else:
+            print "nope"
+
+        print "waiting 900 seconds..."
+        time.sleep(900)
+
+
+
+start()

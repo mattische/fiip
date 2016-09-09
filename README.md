@@ -5,15 +5,17 @@ Since my RPi does not have the same ip (dynamic).
 
 ## client
 Requirements:
-- pip and httplib2
+- pip
+- httplib2
 
-The script in client should be placed on the host that you wish know ip. I.e your RPi.
+The script in client should be placed on the host that you wish know ip. I.e on your RPi.
 Run the script in intervalls, say every hour, with supervisord (http://supervisord.org/). The script requires sudo-rights since it queries on of the machines network interfaces.
 
 ## server
 Requirements:
 - pip
 - flask
+- sqlite3
 
 Place the script in server on a host that has an static ip and is reachable from client.
 I use supervisord to run it at startup.
@@ -46,6 +48,14 @@ And make supervisor read you config file;
 ```
 $ supervisorctl reread
 $ supervisor update
+```
+
+Now you may stop, start and restart the scripts;
+```
+$ sudo supervisorctl
+$ supervisor> stop fiip-server
+$ supervisor> start fiip-client
+$ supervisor> help
 ```
 
 Look for any changes in the log-files.

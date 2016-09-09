@@ -74,17 +74,24 @@ def check(ping_url, network_interface, server_url):
 def start():
     import time
 
-    while True:
-        ping_google = "www.google.se"
-        net_interface = "wlan0"
-        server_address= "http://46.101.252.64:5000/setip/"
-        if check(ping_google, net_interface, server_address):
-            print "ping.py: ping " + ping_google + " ok. IP is " + get_ip_address(net_interface) + ". " + server_address + " requested."
-        else:
-            print "nope"
+    current_ip = ""
+    sleep_time = 3600
 
-        print "waiting 900 seconds..."
-        time.sleep(900)
+    ping_google = "www.google.se"
+    net_interface = "wlan0"
+    server_address= "http://46.101.252.64:5000/setip/"
+
+    while True:
+        if current_ip != get_ip_address(net_interface):
+            if check(ping_google, net_interface, server_address): #ok
+                current_ip = get_ip_address(net_interface)
+                print "ping.py: ping " + ping_google + " ok. IP is " + current_ip + ". " + server_address + " requested."
+            else:
+                print "ping.py: failed - no ip, no internet connection"
+                sleep_time = 30 # check again after 30 secs
+
+        print "ping.py: waiting " + str(sleep_time) + " seconds..."
+        time.sleep(sleep_time)
 
 
 

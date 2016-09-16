@@ -79,7 +79,7 @@ def start():
 
     ping_google = "www.google.se"
     net_interface = "wlan0"
-    server_address= "http://46.101.252.64:5000/setip/"
+    server_address= "http://IP:PORT/setip/"
 
     while True:
         if current_ip != get_ip_address(net_interface):

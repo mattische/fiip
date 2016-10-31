@@ -39,7 +39,7 @@ def get_ip_address(ifname):
 
 def check(ping_url, network_interface, server_url):
     """
-    Tries to ping the ping_url, i.e www.google.com, - if that succeds, makes a GET request to server(server_url) to store this machines IP address.
+    Tries to ping the ping_url, i.e www.google.com, - if that succeeds, makes a GET request to server(server_url) to store this machines IP address.
     If ping fails, then bring down, bring up network_interface, i.e wlan0, and finally run dhclient for network_interfae.
     """
 
